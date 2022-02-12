@@ -1,6 +1,7 @@
 const inquirer = require("inquirer");
 const fs = require("fs");
 
+// Creates HTML file content with the specified values.
 const generateHTML = ({ userName, location, bio, linkedInUrl, gitHubUrl }) =>
     `<!DOCTYPE html>
     <html lang="en">
@@ -29,6 +30,7 @@ const generateHTML = ({ userName, location, bio, linkedInUrl, gitHubUrl }) =>
     </body>
     </html>`;
 
+// Collects user input
 inquirer.prompt([
     {
         message: "What's your name?",
@@ -56,7 +58,9 @@ inquirer.prompt([
         name: "gitHubUrl"
     }
 ]).then(response => {
+    // Gets the HTML page content based on user answers
     const htmlPageContent = generateHTML(response);
+    // Writes the content to index.html page.
     fs.writeFile("index.html", htmlPageContent, err => 
-        err ? console.log(err) : console.log("Success!"));
+        err ? console.log(err) : console.log("Successfully created index.html file!"));
 });

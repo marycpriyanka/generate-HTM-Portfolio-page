@@ -2,7 +2,7 @@ const inquirer = require("inquirer");
 const fs = require("fs");
 
 // Creates HTML file content with the specified values.
-const generateHTML = ({ userName, location, bio, linkedInUrl, gitHubUrl }) =>
+const generateHTMLContent = ({ userName, location, bio, linkedInUrl, gitHubUrl }) =>
     `<!DOCTYPE html>
     <html lang="en">
     <head>
@@ -59,7 +59,7 @@ inquirer.prompt([
     }
 ]).then(response => {
     // Gets the HTML page content based on user answers
-    const htmlPageContent = generateHTML(response);
+    const htmlPageContent = generateHTMLContent(response);
     // Writes the content to index.html page.
     fs.writeFile("index.html", htmlPageContent, err => 
         err ? console.log(err) : console.log("Successfully created index.html file!"));
